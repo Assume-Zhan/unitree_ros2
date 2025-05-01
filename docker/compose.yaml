@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   # Container for ROS2 rtabmap
-  rtabmap-ws:
+  unitree:
     # Build or Reference the image
     build: .
     image: assume/unitree

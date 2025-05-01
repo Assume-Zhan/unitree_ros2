@@ -12,7 +12,7 @@ RUN apt-get update && \
                 vim \
                 curl \
                 tree \
-                tmux \
+                tmux && \
                 rm -rf /var/lib/apt/lists/*
 
 # add user with default bash
