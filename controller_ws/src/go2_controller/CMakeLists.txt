@@ -22,9 +22,14 @@ add_library(go2_controller SHARED src/go2_controller.cpp)
 target_include_directories(go2_controller PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/go2_controller>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/go2_controller/common>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/go2_controller/nlohmann>
   $<INSTALL_INTERFACE:include>
   $<INSTALL_INTERFACE:include/go2_controller>
+)
+
+target_sources(go2_controller PRIVATE
+  src/common/ros2_sport_client.cpp
 )
 
 ament_target_dependencies(go2_controller

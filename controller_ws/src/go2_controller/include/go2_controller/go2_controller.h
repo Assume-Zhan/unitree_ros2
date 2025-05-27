@@ -13,6 +13,7 @@
 #include "common/ros2_sport_client.h"
 
 // Messages
+#include "geometry_msgs/msg/twist.hpp"
 #include "unitree_go/msg/sport_mode_state.hpp"
 #include "unitree_api/msg/request.hpp"
 
@@ -27,8 +28,20 @@ public:
 
 private:
 
-    // ROS2 - Objects
-    rclcpp::TimerBase::SharedPtr timer_;
+    // ROS2 - Subscribers
+    rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub;
+
+    // ROS2 - Publishers
+    rclcpp::Publisher<unitree_api::msg::Request>::SharedPtr req_pub;
+
+    // ROS2 - callbacks
+    void cmd_vel_callback(const geometry_msgs::msg::Twist::SharedPtr msg);
+
+    // Unitree Go2 - ROS2 request message
+    unitree_api::msg::Request req;
+
+    // Unitree Go2 - Sport Client
+    SportClient sport_client;
 };
 
 RCLCPP_COMPONENTS_REGISTER_NODE(Go2_Controller)
