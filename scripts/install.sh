@@ -3,6 +3,7 @@
 SCRIPT_DIR=$(dirname "$0")
 CYCLONEDDS_WS_DIR="/home/user/workspace/cyclonedds_ws"
 EXAMPLE_WS_DIR="/home/user/workspace/example"
+CONTROLLER_WS_DIR="/home/user/workspace/controller_ws"
 SETUP_SCRIPT="/home/user/workspace/setup.sh"
 
 # Cloning CycloneDDS repository
@@ -35,6 +36,9 @@ fi
 # Sourcing ROS2 environment
 source /opt/ros/humble/setup.bash
 
+# Sleep to ensure ROS2 environment is sourced
+sleep 1
+
 # Build the remaining packages in the CycloneDDS workspace
 if [ -d "$CYCLONEDDS_WS_DIR/install/unitree_api" ]; then
     echo "[CYCLONEDDS_WS]: CycloneDDS workspace already built, skipping build."
@@ -52,6 +56,8 @@ else
     echo "[SETUP]: Setup script not found, skipping sourcing."
 fi
 
+sleep 1
+
 # Build the example workspace
 if [ -d "$EXAMPLE_WS_DIR/build" ]; then
     echo "[EXAMPLE_WS]: Example workspace already built, skipping build."
@@ -59,4 +65,13 @@ else
     echo "[EXAMPLE_WS]: Building example workspace..."
     cd "$EXAMPLE_WS_DIR"
     colcon build
+fi
+
+# Build the controller workspace
+if [ -d "$CONTROLLER_WS_DIR/build" ]; then
+    echo "[CONTROLLER_WS]: Controller workspace already built, skipping build."
+else
+    echo "[CONTROLLER_WS]: Building controller workspace..."
+    cd "$CONTROLLER_WS_DIR"
+    colcon build --symlink-install
 fi

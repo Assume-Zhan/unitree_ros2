@@ -116,18 +116,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Run the install script if it exists
-if [ -f /home/user/workspace/scripts/install.sh ]; then
-    echo "[INSTALL]: Running install script..."
-    source /home/user/workspace/scripts/install.sh
-else
-    echo "[INSTALL]: Install script not found, skipping."
-fi
-
 # Source the setup script if it exists
 if [ -f /home/user/workspace/setup.sh ]; then
     echo "[SETUP]: Sourcing setup script..."
     source /home/user/workspace/setup.sh
 else
     echo "[SETUP]: Setup script not found, skipping."
+fi
+
+# Source the controller workspace setup script if it exists
+if [ -f /home/user/workspace/controller_ws/install/setup.bash ]; then
+    echo "[CONTROLLER_WS]: Sourcing controller workspace setup script..."
+    source /home/user/workspace/controller_ws/install/setup.bash
+else
+    echo "[CONTROLLER_WS]: Controller workspace setup script not found, skipping."
 fi
