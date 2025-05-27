@@ -40,8 +40,5 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # Mount X11 server
       - /tmp/.X11-unix:/tmp/.X11-unix
-      # Direct Rendering Infrastructure
-      - /dev/dri:/dev/dri
-      # Mount sound card to prevent Gazebo warning.
-      - /dev/snd:/dev/snd
-      - ../:/home/user/ws
+      - /dev:/dev
+      - ../:/home/user/workspace

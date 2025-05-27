@@ -1,4 +1,4 @@
-FROM osrf/ros:foxy-desktop
+FROM osrf/ros:humble-desktop-full
 
 LABEL org.opencontainers.image.authors="assume0701@gmail.com"
 
@@ -15,14 +15,27 @@ RUN apt-get update && \
                 tmux && \
                 rm -rf /var/lib/apt/lists/*
 
-# add user with default bash
+# Add user with default bash
 RUN adduser --disabled-password --gecos '' --shell /bin/bash ${USERNAME} && \
     adduser ${USERNAME} sudo && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-COPY .bashrc /home/$USERNAME/.bashrc
+#############################################
+# --- Install ros packages ---
+RUN apt-get update && apt-get install -y \
+    ros-$ROS_DISTRO-joint-state-broadcaster \
+    ros-$ROS_DISTRO-imu-tools \
+    ros-$ROS_DISTRO-pointcloud-to-laserscan \
+    ros-$ROS_DISTRO-realsense2-camera \
+    ros-$ROS_DISTRO-pcl-ros \
+    ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
+    ros-$ROS_DISTRO-rosidl-generator-dds-idl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Login with user
 USER ${USERNAME}
+
+# Copy bashrc
+COPY .bashrc /home/${USERNAME}/.bashrc
 
 CMD ["bash"]
