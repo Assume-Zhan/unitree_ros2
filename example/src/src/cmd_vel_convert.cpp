@@ -23,7 +23,7 @@ public:
         // the req_puber is set to subscribe "/api/sport/request" topic with dt
         req_puber = this->create_publisher<unitree_api::msg::Request>("/api/sport/request", 10);
 
-        t = -1; // Runing time count
+        // t = -1; // Runing time count
     };
 
 private:
