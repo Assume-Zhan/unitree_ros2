@@ -46,6 +46,9 @@ rclcpp_components_register_node(go2_controller
   PLUGIN "Go2_Controller" 
   EXECUTABLE go2_controller_node
 )
+
+install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
+
 install(TARGETS
   go2_controller
   ARCHIVE DESTINATION lib
