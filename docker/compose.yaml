@@ -11,7 +11,7 @@ services:
     privileged: true
     command: bash
     network_mode: host
-    working_dir: /home/user
+    working_dir: /home/user/workspace
 
     # Container Settings    
     environment:

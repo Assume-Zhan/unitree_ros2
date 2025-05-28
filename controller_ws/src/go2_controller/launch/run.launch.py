@@ -36,7 +36,7 @@ def generate_launch_description():
         name="go2_controller_node",
         output="screen",
         remappings=remapping,
-        arguments=["--ros-args", "--log-level", ["camera_buffer_node:=", LaunchConfiguration("log_level")]],
+        arguments=["--ros-args", "--log-level", ["go2_controller_node:=", LaunchConfiguration("log_level")]],
     )
 
     ld = LaunchDescription(ARGUMENTS)
