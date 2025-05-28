@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     curl \
     tree \
-    tmux \
-    && rm -rf /var/lib/apt/lists/*
+    tmux && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add user with default bash
 RUN adduser --disabled-password --gecos '' --shell /bin/bash ${USERNAME} && \
@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-realsense2-camera \
     ros-$ROS_DISTRO-pcl-ros \
     ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
-    ros-$ROS_DISTRO-rosidl-generator-dds-idl \
-    && rm -rf /var/lib/apt/lists/*
+    ros-$ROS_DISTRO-rosidl-generator-dds-idl && \
+    rm -rf /var/lib/apt/lists/*
 
 # Login with user
 USER ${USERNAME}
