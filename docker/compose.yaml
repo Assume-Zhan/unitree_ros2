@@ -40,5 +40,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # Mount X11 server
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/home/user/.Xauthority
       - /dev:/dev
       - ../:/home/user/workspace
